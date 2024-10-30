@@ -19,5 +19,7 @@
 > [!NOTE]
 > Prisma commands
 > bunx prisma init
+
 > bunx prisma migrate dev
+
 > bunx prisma generate
