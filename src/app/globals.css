@@ -8,6 +8,10 @@
       #f00 0%, 25%, #fb7100 100%);
 }
 
+.button {
+  @apply inline-flex items-center px-2 py-1.5 rounded-md bg-red-700 text-white font-semibold
+}
+
 body {
   font-family: 'Poppins', sans-serif;
   background: #fbfaf5

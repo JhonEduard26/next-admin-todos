@@ -33,7 +33,7 @@ export default function NewTodo() {
         name="description"
       />
       <button
-        className="inline-flex items-center px-2 py-1.5 rounded-md bg-red-700 text-white font-semibold"
+        className="button"
         type="submit"
       >
         <PlusIcon className="w-6 h-6" />
