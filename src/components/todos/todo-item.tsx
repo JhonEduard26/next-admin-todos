@@ -1,10 +1,13 @@
-import TrashIcon from "@/icons/trash";
-import { todos } from "@prisma/client";
+'use client'
+
+
+import TrashIcon from "@/icons/trash"
+import { todos } from "@prisma/client"
 import styles from "./todo.module.css"
 
 interface Props {
   todo: todos,
-  toggleTodo: (id: string, completed: boolean) => Promise<void>
+  toggleTodo: (id: string, completed: boolean) => Promise<todos>
 }
 
 export default function TodoItem({ todo, toggleTodo }: Props) {

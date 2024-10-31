@@ -1,12 +1,13 @@
 'use client'
 
 import PlusIcon from "@/icons/plus";
-import * as todosApi from "@/helpers/todos"
+// import * as todosApi from "@/helpers/todos"
 import { FormEvent, useRef } from "react";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
+import { addTodo } from "@/actions/actions";
 
 export default function NewTodo() {
-  const router = useRouter()
+  // const router = useRouter()
   const formRef = useRef<HTMLFormElement>(null)
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -14,10 +15,13 @@ export default function NewTodo() {
     const formData = new FormData(event.currentTarget)
     const description = formData.get("description") as string
 
-    await todosApi.createTodo(description)
+    if (description.trim().length === 0) return
+    
+    await addTodo(description)
+    // await todosApi.createTodo(description)
 
     formRef.current?.reset()
-    router.refresh()
+    // router.refresh()
   }
 
   return (
