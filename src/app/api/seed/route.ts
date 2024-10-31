@@ -3,9 +3,9 @@ import { NextResponse } from "next/server";
 
 
 export async function GET() {
-  await prisma.todo.deleteMany()
+  await prisma.todos.deleteMany()
 
-  await prisma.todo.createMany({
+  await prisma.todos.createMany({
     data: [
       { description: 'Learn React', completed: true },
       { description: 'Learn Next.js' },

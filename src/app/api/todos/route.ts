@@ -24,7 +24,7 @@ export async function GET(request: NextRequest) {
     })
   }
 
-  const todos = await prisma.todo.findMany({ take, skip })
+  const todos = await prisma.todos.findMany({ take, skip })
 
   return NextResponse.json({
     data: todos
@@ -40,7 +40,7 @@ export async function POST(request: NextRequest) {
   try {
     const body = postSchema.parse(await request.json())
 
-    const newTodo = await prisma.todo.create({ data: body })
+    const newTodo = await prisma.todos.create({ data: body })
 
     return NextResponse.json(newTodo, {
       status: 201

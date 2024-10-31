@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+.classic-gradient {
+  background-image:
+    radial-gradient(farthest-corner circle at 100% -25%,
+      #f00 0%, 25%, #fb7100 100%);
+}
+
 body {
   font-family: 'Poppins', sans-serif;
   background: #fbfaf5
