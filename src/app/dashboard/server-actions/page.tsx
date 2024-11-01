@@ -5,9 +5,7 @@ import prisma from "@/lib/prisma"
 
 export default async function ServerActionsPage() {
   const todos = await prisma.todos.findMany({
-    orderBy: {
-      description: 'asc'
-    }
+    orderBy: { description: 'asc' }
   })
 
   return (
