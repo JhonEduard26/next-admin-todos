@@ -15,6 +15,10 @@ const links = [
   {
     path: '/dashboard/server-actions',
     name: 'Server actions',
+  },
+  {
+    path: '/dashboard/cookies',
+    name: 'Cookies',
   }
 ]
 
