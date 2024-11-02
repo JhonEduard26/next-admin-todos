@@ -19,6 +19,10 @@ const links = [
   {
     path: '/dashboard/cookies',
     name: 'Cookies',
+  },
+  {
+    path: '/dashboard/products',
+    name: 'Products',
   }
 ]
 
