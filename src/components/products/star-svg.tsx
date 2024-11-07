@@ -1,4 +1,4 @@
-export default function Star() {
+export default function StarIcon() {
   return (
     <svg className="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"
       xmlns="http://www.w3.org/2000/svg">

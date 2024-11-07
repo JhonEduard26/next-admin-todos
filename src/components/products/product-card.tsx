@@ -6,17 +6,26 @@ import Image from "next/image"
 import PlusIcon from "@/icons/plus"
 import TrashIcon from "@/icons/trash"
 import type { Product } from "@/data/products"
-import Star from "./Star"
-import { addProductToCart } from "@/actions/cart-actions"
+import Star from "@/components/products/star-svg"
+import * as cartActions from "@/actions/cart-actions"
+import { useRouter } from "next/navigation"
 
 interface Props {
   product: Product
 }
 
 export const ProductCard = ({ product }: Props) => {
+  const router = useRouter()
+
   const onAddToCart = () => {
-    addProductToCart(product.id)
-  } 
+    cartActions.addProductToCart(product.id)
+    router.refresh()
+  }
+
+  const onDeleteProduct = () => {
+    cartActions.deleteProductToCart(product.id)
+    router.refresh()
+  }
 
   return (
     <div className="shadow rounded-lg max-w-sm bg-gray-800 border-gray-100">
@@ -65,7 +74,9 @@ export const ProductCard = ({ product }: Props) => {
               <PlusIcon className="w-5 h-5" />
             </button>
             <button
-              className="text-white focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-red-600 hover:bg-red-700 focus:ring-red-800">
+              className="text-white focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-red-600 hover:bg-red-700 focus:ring-red-800"
+              onClick={onDeleteProduct}
+            >
               <TrashIcon className="w-5 h-5" />
             </button>
           </div>

@@ -1,7 +1,24 @@
 import CartIcon from "@/icons/cart"
 import SearchIcon from "@/icons/search-icon"
+import { cookies } from "next/headers"
+import Link from "next/link"
 
-export default function Header() {
+const getTotalItems = (cart: Record<string, number>): number => {
+  let items = 0
+  for (const key in cart) {
+    items += cart[key]
+  }
+
+  return items
+}
+
+export default async function Header() {
+  const cookieStore = await cookies()
+  const cartCookie = JSON.parse(cookieStore.get('cart')?.value ?? '{}')
+
+  const items = getTotalItems(cartCookie)
+
+
   return (
     <header className="flex justify-between items-center ml-52 px-4 py-2 bg-white">
       <h1 className="font-semibold text-xl">Dashboard</h1>
@@ -21,10 +38,14 @@ export default function Header() {
             autoComplete="off"
           />
         </div>
-        <div className="flex items-center gap-x-1 px-2 py-1 rounded-lg border border-gray-300">
-          <span className="font-semibold text-sm">10</span>
-          <CartIcon />
-        </div>
+        <Link className="flex items-center gap-x-1 px-2 py-1 rounded-lg border border-gray-300" href="/dashboard/cart">
+          {
+            items > 0 && (
+              <span className="font-semibold text-sm">{items}</span>
+            )
+          }
+          <CartIcon className="w-5 h-5" />
+        </Link>
       </div>
     </header>
   )
