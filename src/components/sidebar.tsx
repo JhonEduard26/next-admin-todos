@@ -13,7 +13,8 @@ export default async function Sidebar() {
     redirect("/api/auth/signin")
   }
 
-  const userRoles = session.user.roles.join(', ')
+  const userRoles = session.user?.roles?.join(', ')
+  const userImage = session.user?.image ?? "/default-profile-image.webp" 
 
   return (
     <aside className="absolute top-0 left-0 flex flex-col h-screen w-52 p-5 border border-gray-300 bg-white">
@@ -24,7 +25,7 @@ export default async function Sidebar() {
       <div className="flex flex-col items-center mb-10">
         <Image
           className="rounded-full mb-5 border-2 border-orange-500"
-          src={session.user.image!}
+          src={userImage}
           alt="User profile image"
           width={112}
           height={112}

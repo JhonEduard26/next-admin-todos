@@ -2,7 +2,7 @@
 
 
 import prisma from "@/lib/prisma"
-import { todos } from "@prisma/client"
+import { Todo } from "@prisma/client"
 import { revalidatePath } from "next/cache"
 
 const sleep = (seconds: number = 0): Promise<boolean> => {
@@ -13,10 +13,10 @@ const sleep = (seconds: number = 0): Promise<boolean> => {
   })
 }
 
-export const toggleTodo = async (id: string, completed: boolean): Promise<todos> => {
+export const toggleTodo = async (id: string, completed: boolean): Promise<Todo> => {
   await sleep(2)
 
-  const todo = await prisma.todos.findUnique({
+  const todo = await prisma.todo.findUnique({
     where: {
       id: id
     }
@@ -26,7 +26,7 @@ export const toggleTodo = async (id: string, completed: boolean): Promise<todos>
     throw `Todo with id ${id} not found`
   }
 
-  const updatedTodo = await prisma.todos.update({
+  const updatedTodo = await prisma.todo.update({
     where: { id },
     data: { completed }
   })
@@ -35,8 +35,8 @@ export const toggleTodo = async (id: string, completed: boolean): Promise<todos>
   return updatedTodo
 }
 
-export const addTodo = async (description: string): Promise<todos> => {
-  const newTodo = await prisma.todos.create({
+export const addTodo = async (description: string): Promise<Todo> => {
+  const newTodo = await prisma.todo.create({
     data: {
       description
     }
@@ -47,7 +47,7 @@ export const addTodo = async (description: string): Promise<todos> => {
 }
 
 export const deleteCompleteTodos = async (): Promise<void> => {
-  await prisma.todos.deleteMany({
+  await prisma.todo.deleteMany({
     where: {
       completed: true
     }

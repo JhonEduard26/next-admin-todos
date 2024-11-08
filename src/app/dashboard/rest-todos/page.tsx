@@ -4,7 +4,7 @@ import TodoList from "@/components/todos/todo-list"
 import DeleteAllTodos from "@/components/todos/delete-all-todos"
 
 export default async function RestTodosPage() {
-  const todos = await prisma.todos.findMany({
+  const todos = await prisma.todo.findMany({
     orderBy: {
       description: 'asc'
     }

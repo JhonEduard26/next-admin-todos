@@ -4,7 +4,7 @@ import TodoList from "@/components/todos/todo-list"
 import prisma from "@/lib/prisma"
 
 export default async function ServerActionsPage() {
-  const todos = await prisma.todos.findMany({
+  const todos = await prisma.todo.findMany({
     orderBy: { description: 'asc' }
   })
 
