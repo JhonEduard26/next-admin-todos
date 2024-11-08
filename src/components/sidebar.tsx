@@ -13,6 +13,8 @@ export default async function Sidebar() {
     redirect("/api/auth/signin")
   }
 
+  const userRoles = session.user.roles.join(', ')
+
   return (
     <aside className="absolute top-0 left-0 flex flex-col h-screen w-52 p-5 border border-gray-300 bg-white">
       <div className="flex items-center gap-x-2 mb-10">
@@ -28,7 +30,7 @@ export default async function Sidebar() {
           height={112}
         />
         <p className="font-semibold text-center">{session.user.name}</p>
-        <p className="text-sm text-gray-700">Role</p>
+        <p className="text-sm text-gray-700 capitalize">{userRoles}</p>
       </div>
       <NavLinks />
       <div className="flex-1"></div>
