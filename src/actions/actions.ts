@@ -4,6 +4,7 @@
 import prisma from "@/lib/prisma"
 import { Todo } from "@prisma/client"
 import { revalidatePath } from "next/cache"
+import { getUserSessionServer } from "./auth-actions"
 
 const sleep = (seconds: number = 0): Promise<boolean> => {
   return new Promise(resolve => {
@@ -35,10 +36,22 @@ export const toggleTodo = async (id: string, completed: boolean): Promise<Todo> 
   return updatedTodo
 }
 
+export const deleteTodo = async (id: string): Promise<void> => {
+  await prisma.todo.delete({
+    where: {
+      id: id
+    }
+  })
+  revalidatePath('/dashboard/server-actions')
+}
+
 export const addTodo = async (description: string): Promise<Todo> => {
+  const user = await getUserSessionServer()
+
   const newTodo = await prisma.todo.create({
     data: {
-      description
+      description,
+      userId: user.id
     }
   })
 

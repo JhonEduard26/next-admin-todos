@@ -20,7 +20,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
       authorize: async (credentials) => {
         const user = await signInEmailAndPassword(credentials.email as string, credentials.password as string)
-        console.log("🚀 ~ authorize: ~ user:", user)
         return user
       },
     }),

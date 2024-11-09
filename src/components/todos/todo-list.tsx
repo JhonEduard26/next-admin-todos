@@ -1,6 +1,6 @@
 import { Todo } from "@prisma/client"
 import TodoItem from "./todo-item"
-import { toggleTodo } from "@/actions/actions"
+import { toggleTodo, deleteTodo } from "@/actions/actions"
 
 interface Props {
   todos?: Todo[]
@@ -17,6 +17,7 @@ export default function TodoList({ todos = [] }: Props) {
               key={todo.id}
               todo={todo}
               toggleTodo={toggleTodo}
+              deleteTodo={deleteTodo}
             />
           ))
         }

@@ -1,5 +1,20 @@
-import prisma from "@/lib/prisma"
+'use server'
+
+
+import { auth } from "@/auth"
 import { comparePassword, saltAndHashPassword } from "@/utils/password"
+import prisma from "@/lib/prisma"
+
+export const getUserSessionServer = async () => {
+  const session = await auth()
+  const user = await prisma.user.findUnique({ where: { email: session?.user.email ?? '' } })
+  return {
+    email: user?.email ?? 'No email',
+    id: user?.id ?? 'No id',
+    image: user?.image ?? null,
+    name: user?.name ?? 'No name',
+  }
+}
 
 export const signInEmailAndPassword = async (email: string, password: string) => {
   if (!email || !password) return null

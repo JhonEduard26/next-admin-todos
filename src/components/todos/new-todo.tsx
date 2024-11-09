@@ -18,10 +18,8 @@ export default function NewTodo() {
     if (description.trim().length === 0) return
     
     await addTodo(description)
-    // await todosApi.createTodo(description)
 
     formRef.current?.reset()
-    // router.refresh()
   }
 
   return (

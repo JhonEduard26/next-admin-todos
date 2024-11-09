@@ -1,14 +1,15 @@
-import prisma from "@/lib/prisma";
-import { todos } from "@prisma/client";
-import { NextResponse } from "next/server";
-import { z } from "zod";
+import { NextResponse } from "next/server"
+import { Todo } from "@prisma/client"
+import { z } from "zod"
+
+import prisma from "@/lib/prisma"
 
 interface Segments {
   params: Promise<{ id: string }>
 }
 
-const getTodo = async (id: string): Promise<todos | null> => {
-  const todo = await prisma.todos.findUnique({
+const getTodo = async (id: string): Promise<Todo | null> => {
+  const todo = await prisma.todo.findUnique({
     where: {
       id: id
     }
@@ -55,7 +56,7 @@ export async function PUT(request: Request, { params }: Segments) {
 
     const body = putSchema.parse(await request.json())
 
-    const updatedTodo = await prisma.todos.update({
+    const updatedTodo = await prisma.todo.update({
       where: {
         id: id
       },
